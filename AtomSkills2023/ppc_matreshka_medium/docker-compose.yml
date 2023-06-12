@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  doors:
+    container_name: "matreshka-medium"
+    hostname: "matreshka-medium"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "10013:5002"
+    environment:
+      - MATRESHKA_FLAG="flag{84c796b3f5e03f7112f0244c39ddfa37b2223faac81a563f7b911eefb6540979}"
+      - MATRESHKA_COUNT=5000

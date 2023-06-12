@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ppc-matreshka-easy"
+name = "ppc-matreshka-medium"
 version = "0.1.0"
 description = ""
 authors = ["kartaris <rh@getflow.tech>"]
