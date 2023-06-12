@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "ppc-matreshka-easy"
+version = "0.1.0"
+description = ""
+authors = ["kartaris <rust768@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+qrcode = "^7.4.2"
+atomics = "^1.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
