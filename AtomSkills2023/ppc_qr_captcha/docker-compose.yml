@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  doors:
+    container_name: "barcodes"
+    hostname: "barcodes"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "10014:5002"
+    environment:
+      - BARCODE_FLAG="flag{e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855}"
+      - BARCODE_COUNT=450

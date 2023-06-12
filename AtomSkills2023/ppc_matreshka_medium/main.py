@@ -23,16 +23,9 @@ GAME_NAME = """
 MATRESHKA_FLAG = str(os.getenv('MATRESHKA_FLAG', 'flag{SupaDupaFlag}'))
 MATRESHKA_COUNT = int(os.getenv('MATRESHKA_COUNT', 2))
 
-MATRESHKA: Optional[list[Doll]] = None
-
 
 def generate_matreshka() -> list[Doll]:
-    global MATRESHKA
-
-    if MATRESHKA is None:
-        MATRESHKA = [Doll.generate() for _ in range(MATRESHKA_COUNT)]
-
-    return MATRESHKA
+    return [Doll.generate(doll_id=i) for i in range(MATRESHKA_COUNT)]
 
 
 def threaded(conn):

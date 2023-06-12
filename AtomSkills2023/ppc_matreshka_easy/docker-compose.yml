@@ -11,4 +11,4 @@ services:
       - "10012:5002"
     environment:
       - MATRESHKA_FLAG="flag{56f3dab2bb07f335eba89b14dc0a4c59d4d67b29668e6e28006748c9f4a0d139}"
-      - MATRESHKA_COUNT=5000
+      - MATRESHKA_COUNT=500

@@ -1,27 +1,20 @@
 import uuid
 
-import atomics
 import qrcode
 from qrcode.image.svg import SvgPathImage
 
 
 class Doll:
-    __next_door_id: atomics.INT = atomics.atomic(4, atomics.UINT)
-
     def __init__(self, doll_id: int):
         self.__doll_id = doll_id
         self.__key = f"NOT_FLAG<{uuid.uuid4()}>"
 
     @staticmethod
-    def generate():
-        return Doll(doll_id=Doll.next_doll_id())
+    def generate(doll_id: int):
+        return Doll(doll_id=doll_id)
 
     def name(self):
         return f"Doll #{self.__doll_id}"
-
-    @staticmethod
-    def next_doll_id() -> int:
-        return Doll.__next_door_id.fetch_inc()
 
     @property
     def key(self) -> str:

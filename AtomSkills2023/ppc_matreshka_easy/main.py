@@ -22,16 +22,9 @@ GAME_NAME = """
 MATRESHKA_FLAG = str(os.getenv('MATRESHKA_FLAG', 'flag{SupaDupaFlag}'))
 MATRESHKA_COUNT = int(os.getenv('MATRESHKA_COUNT', 2))
 
-MATRESHKA: Optional[list[Doll]] = None
-
 
 def generate_matreshka() -> list[Doll]:
-    global MATRESHKA
-
-    if MATRESHKA is None:
-        MATRESHKA = [Doll.generate() for _ in range(MATRESHKA_COUNT)]
-
-    return MATRESHKA
+    return [Doll.generate(doll_id=i) for i in range(MATRESHKA_COUNT)]
 
 
 def threaded(conn):
@@ -65,8 +58,6 @@ if __name__ == '__main__':
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     sock.bind((host, port))
-
-    generate_matreshka()
 
     sock.listen(5)
 
