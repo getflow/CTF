@@ -17,7 +17,7 @@ class BasicAuth(HTTPBasic):
         user_id = authorization.username
         user = User.get_user(user_id=uuid.UUID(user_id))
         if (
-            not user or hashlib.md5(authorization.password).hexdigest() != user.password  # noqa: W503
+            not user or hashlib.md5(authorization.password.encode("utf-8")).hexdigest() != user.password  # noqa: W503
         ):
             raise HTTPException(
                 status_code=HTTP_401_UNAUTHORIZED,
