@@ -1,31 +1,14 @@
-import uuid
+from fastapi import FastAPI, Depends
 
-from fastapi import FastAPI
-from starlette.responses import HTMLResponse
+from app.routers.project import project_router
+from app.security.basic_auth import basic_auth
 
 app = FastAPI()
 
-
-@app.get("/project/{project_id}/commit")
-async def commit_list(project_id: uuid.UUID):
-    pass
-
-
-@app.post("/project/{project_id}/commit")
-async def create_commit(project_id: uuid.UUID):
-    pass
-
-
-@app.get("/project/{project_id}/commit/{commit_id}")
-async def get_commit(commit_id: str):
-    pass
-
-
-@app.get("/project/{project_id}/download")
-async def download(project_id: uuid.UUID):
-    pass
-
-
-@app.post("/project")
-async def create_project():
-    pass
+app.include_router(
+    router=project_router,
+    prefix="/api/v0",
+    dependencies=[
+        Depends(basic_auth)
+    ]
+)
