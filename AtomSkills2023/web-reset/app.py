@@ -36,7 +36,7 @@ def login():
             cursor.execute("SELECT info FROM users WHERE username = ?", (username,))
             info = cursor.fetchone()[0]
             conn.close()
-    
+
             session['username'] = username
             session['info'] = info
             return redirect('/')
@@ -61,7 +61,8 @@ def register():
         if not user:
             conn = sqlite3.connect('database.db')
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO users (username, password, info) VALUES (?, ?, ?)", (username, password, 'New User'))
+            cursor.execute("INSERT INTO users (username, password, info) VALUES (?, ?, ?)",
+                           (username, password, 'New User'))
             conn.commit()
             cursor.execute("SELECT info FROM users WHERE username = ?", (username,))
             info = cursor.fetchone()[0]
@@ -75,6 +76,7 @@ def register():
 
     return render_template('register.html')
 
+
 @app.route('/reset', methods=['GET', 'POST'])
 def reset():
     if request.method == 'POST':
@@ -87,7 +89,7 @@ def reset():
         conn.close()
 
         if user:
-            reset_code = random.randint(10000,99999)
+            reset_code = random.randint(10000, 99999)
             conn = sqlite3.connect('database.db')
             cursor = conn.cursor()
             cursor.execute("UPDATE users SET reset_code = ? WHERE username = ?", (reset_code, username))
@@ -100,6 +102,7 @@ def reset():
             return render_template('reset.html', error='User is not found')
 
     return render_template('reset.html')
+
 
 @app.route('/confirm', methods=['GET', 'POST'])
 def confirm():
@@ -127,6 +130,7 @@ def confirm():
             return render_template('confirm.html', username=session['username'], error='Password recovery error')
 
     return render_template('confirm.html', username=session['username'])
+
 
 @app.route('/logout')
 def logout():
