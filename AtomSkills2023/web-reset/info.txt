@@ -1,2 +1,6 @@
-Надо будет исполнить:
+Решение:
+Reset Password with ResetCode (No Limit)
+Брут 5 символьного кода для восстановления без ограничения
+
+Надо будет исполнить для заливки флага:
 INSERT INTO users (username, password, info) VALUES ("admin", "admin","flag{test_flag}
