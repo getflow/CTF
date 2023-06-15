@@ -15,4 +15,5 @@ class User(SQLModel, table=True):
     @staticmethod
     def get_user(user_id: uuid.UUID) -> "User":
         with session() as dbs:
-            return dbs.get(User, user_id)
+            user = dbs.get(User, user_id)
+            return user

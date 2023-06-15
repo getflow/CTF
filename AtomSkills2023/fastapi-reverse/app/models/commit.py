@@ -45,17 +45,25 @@ class Commit(SQLModel, table=True):
 
     @staticmethod
     def create_commit(project_id: uuid.UUID, author_id: uuid.UUID, commit: SomeCommit) -> "Commit":
+        now = datetime.datetime.now()
+        print(str(hash(frozenset(dict(
+                    partial_hash=commit.partial_hash,
+                    created_at=now,
+                    author_id=author_id
+                ).items()))))
+
         with session() as dbs:
             new_commit = Commit(
                 commit_id=str(hash(frozenset(dict(
                     partial_hash=commit.partial_hash,
-                    created_at=datetime.datetime.now(),
+                    # created_at=datetime.datetime.now(),
+                    created_at=now,
                     author_id=author_id
                 ).items()))),
                 parent_id=commit.parent_id,
                 author=author_id,
                 message=commit.message,
-                created_at=datetime.datetime.now(),
+                created_at=now,
                 project_id=project_id,
             )
             dbs.add(new_commit)
