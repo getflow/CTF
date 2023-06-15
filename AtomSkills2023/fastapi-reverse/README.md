@@ -12,5 +12,5 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 ```#bash
 docker build -t fastapi-reverse .
-docker run -v ./app.db:/app.db:rw
+docker run -v ./app.db:/app.db:rw fastapi-reverse
 ```
