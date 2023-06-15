@@ -1,8 +1,8 @@
 """init
 
-Revision ID: baf9ee844d66
+Revision ID: 98d8c38e2dd4
 Revises: 
-Create Date: 2023-06-15 04:54:00.750709
+Create Date: 2023-06-15 07:10:44.649725
 
 """
 from alembic import op
@@ -11,7 +11,7 @@ import sqlmodel
 
 
 # revision identifiers, used by Alembic.
-revision = 'baf9ee844d66'
+revision = '98d8c38e2dd4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,7 +37,7 @@ def upgrade() -> None:
     )
     op.create_table('commit',
     sa.Column('commit_id', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
-    sa.Column('parent_id', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+    sa.Column('parent_id', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
     sa.Column('project_id', sqlmodel.sql.sqltypes.GUID(), nullable=False),
     sa.Column('author', sqlmodel.sql.sqltypes.GUID(), nullable=False),
     sa.Column('message', sqlmodel.sql.sqltypes.AutoString(), nullable=False),

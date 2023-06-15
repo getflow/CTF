@@ -20,8 +20,8 @@ async def commit_list(project_id: uuid.UUID):
 
 
 @project_router.post("/{project_id}/commit", response_model=Commit)
-async def create_commit(project_id: uuid.UUID, commit: SomeCommit):
-    return Commit.create_commit(project_id=project_id, commit=commit)
+async def create_commit(project_id: uuid.UUID, commit: SomeCommit, user: User = Depends(basic_auth)):
+    return Commit.create_commit(project_id=project_id, commit=commit, author_id=user.user_id)
 
 
 @project_router.get("/{project_id}/commit/{commit_id}", response_model=Commit)

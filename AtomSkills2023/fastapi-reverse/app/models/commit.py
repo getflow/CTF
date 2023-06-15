@@ -1,7 +1,7 @@
 import datetime
 import uuid
 
-from pydantic.typing import List
+from pydantic.typing import List, Optional
 from sqlmodel import SQLModel, Field, select, col
 
 from app.database import session
@@ -12,7 +12,7 @@ from app.schemas.commit import SomeCommit
 
 class Commit(SQLModel, table=True):
     commit_id: str = Field(primary_key=True)
-    parent_id: str = Field(foreign_key="commit.commit_id")
+    parent_id: Optional[str] = Field(foreign_key="commit.commit_id", nullable=True)
     project_id: uuid.UUID = Field(foreign_key=Project.project_id)
     author: uuid.UUID = Field(foreign_key=User.user_id)
     message: str
@@ -46,11 +46,6 @@ class Commit(SQLModel, table=True):
     @staticmethod
     def create_commit(project_id: uuid.UUID, author_id: uuid.UUID, commit: SomeCommit) -> "Commit":
         now = datetime.datetime.now()
-        print(str(hash(frozenset(dict(
-                    partial_hash=commit.partial_hash,
-                    created_at=now,
-                    author_id=author_id
-                ).items()))))
 
         with session() as dbs:
             new_commit = Commit(
@@ -65,6 +60,7 @@ class Commit(SQLModel, table=True):
                 message=commit.message,
                 created_at=now,
                 project_id=project_id,
+                diff=commit.diff
             )
             dbs.add(new_commit)
             dbs.commit()

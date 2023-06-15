@@ -2,8 +2,7 @@ import hashlib
 import uuid
 
 from fastapi import HTTPException
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from pydantic.typing import Optional
+from fastapi.security import HTTPBasic
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED
 
