@@ -8,4 +8,4 @@ class SomeCommit(BaseModel):
 
     @property
     def partial_hash(self):
-        return hash(self)
+        return hash(frozenset(self.__dict__.items()))
