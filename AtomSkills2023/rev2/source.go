@@ -24,9 +24,9 @@ func main() {
 func enc(s, key string) string {
         result := ""
         d, err := hex.DecodeString(s)
-    if err != nil {
-        panic(err)
-    }
+        if err != nil {
+                panic(err)
+        }
         s = string(d)
         for i := 0; i < len(s); i++ {
                 result += string(s[i] ^ key[i%25])
