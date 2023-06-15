@@ -1,0 +1,2 @@
+Надо будет исполнить:
+INSERT INTO users (username, password, info) VALUES ("admin", "admin","flag{test_flag}
