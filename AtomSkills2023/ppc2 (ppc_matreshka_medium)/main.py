@@ -48,7 +48,7 @@ def threaded(conn):
                     break
                 conn.send(bytes(f"{doll.failed()}\n", encoding='utf-8'))
                 raise Exception
-        conn.send(bytes(f"You found all the dolls. Give me md5 of all keys you entered to get a flag!\n", encoding='utf-8'))
+        conn.send(bytes(f"You found all the dolls. Give me md5 of all keys you entered (concatenate keys and then md5) to get a flag!\n", encoding='utf-8'))
         key = hashlib.md5("".join(parts).encode("utf-8")).hexdigest()
         print(key)
         data = conn.recv(4096)
