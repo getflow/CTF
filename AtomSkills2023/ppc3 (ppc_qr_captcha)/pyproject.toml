@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["kartaris <rh@getflow.tech>"]
 readme = "README.md"
-packages = [{include = "ppc_qr_captcha"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
