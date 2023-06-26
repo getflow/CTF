@@ -13,8 +13,8 @@
 
 ## Reverse
 
-- [rev1](rev1/README.md)
-- [rev2](rev2/README.md)
+- [rev1](rev1/readme.md)
+- [rev2](rev2/readme.md)
 - [rev4](rev4-fastapi-reverse/README.md)
 
 ## Web
